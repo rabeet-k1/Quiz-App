@@ -234,11 +234,13 @@ const QuizLayout = (props) => {
   const [userAns, setUserAns] = useState("");
   const [isClicked, setIsClicked] = useState("none");
   const [isDisable, setIsDisable] = useState(false);
-  const [nextClick, setNextClick] = useState(false);
+  const [nextClick, setNextClick] = useState(true);
   const [progressPer, setProgressPer] = useState(0);
   const [rating, setRating] = useState(3);
   const [maxScore, setMaxScore] = useState(0);
   const [score, setScore] = useState(0);
+  const [buttonCount, setButtonCount] = useState(1);
+  // const [buttonColor, setButtonColor] = useState("");
 
   const handleNextQues = (e) => {
     const nextQuestion = currentQuestion + 1;
@@ -250,9 +252,7 @@ const QuizLayout = (props) => {
     if (difficulty === "hard") setRating(3);
     if (progressPer === 100) setNextClick(true);
 
-    if (userAns === correctAnswer) setMaxScore(maxScore + 5);
-
-    if (userAns !== correctAnswer) setScore(score + 5);
+    // if (userAns) setButtonColor("black");
 
     setCorrectAnswer(null);
     setUserAns(null);
@@ -264,17 +264,21 @@ const QuizLayout = (props) => {
     setCorrectAnswer(
       quizQuestions[currentQuestion].correct_answer.toLowerCase()
     );
+    const newScore = Math.floor((buttonCount / 20) * 100);
 
-    const myScore = (i / 20) * 100;
-    console.log(i);
+    if (userAns === correctAnswer) setMaxScore(newScore);
+
+    setButtonCount(buttonCount + 1);
     setUserAns(currentValue.toLowerCase());
     setProgressPer(progressPer + 5);
     setIsClicked("block");
     setIsDisable(true);
+    setNextClick(false);
   };
 
   // const allAns = quizQuestions[currentQuestion].incorrect_answers;
   // shuffleAns = allAns.sort(() => 0.5 - Math.random());
+
   return (
     <div className="container">
       <ProgressBar per={progressPer} />
@@ -327,6 +331,7 @@ const QuizLayout = (props) => {
         <button
           onClick={handleNextQues}
           disabled={nextClick}
+          value={userAns}
           className="button"
         >
           Next Question
