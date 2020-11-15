@@ -23,7 +23,7 @@
 }
 
 .question-category {
-    font-size: 14px;
+    font-size: 16px;
     opacity: 0.5;
 }
 
@@ -65,5 +65,50 @@
 }
 
 .next-ques {
-    margin: 10px;
+    margin-top: 40px;
+}
+
+StarRatings {
+    margin-right: 50px;
+}
+
+.score-container {
+    display: flex;
+    background-color: lavender;
+    width: 60%;
+    margin: 50px auto 20px auto;
+    flex-direction: column;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.score-bar-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px auto;
+    position: relative;
+    height: 21px;
+}
+
+.a {
+    background-color: black;
+    position: absolute;
+}
+
+.b {
+    background-color: grey;
+    position: absolute;
+}
+
+.c {
+    background-color: lightgray;
+    position: absolute;
 }
